@@ -1,3 +1,5 @@
+//Thanks to Adesh
+
 var CONTACTS = {
     //  list with all contacts from the localstorage
     contactList: {},
@@ -9,7 +11,7 @@ var CONTACTS = {
         //This storeItems will store in the localstorage.
         CONTACTS.storeItems();
     },
-//With fillmodal I am storing 
+//With fillmodal I am capturing user information
     fillModal: function (listItem) {
         document.getElementById("name").className = "";
         if (listItem) {
@@ -24,7 +26,7 @@ var CONTACTS = {
             document.querySelector(".modal").setAttribute("data-position", -1);
         }
     },
-
+//ADDITEM is the function which will take all the information from the modal and will add and later storeItem function will be call so that it stores all the item in the localstorage. 
     addItem: function (fullname, phone, email, position) {
         //new contact
         if (position == -1) {
@@ -34,14 +36,14 @@ var CONTACTS = {
                 "email": email
             }
             CONTACTS.contactList.contacts.push(contact);
-            //update contact
+            //updating contact if user clicks on the previously add contact/ they have ability to change the information. 
         } else {
             CONTACTS.contactList.contacts[position].fullname = fullname;
             CONTACTS.contactList.contacts[position].phone = phone;
             CONTACTS.contactList.contacts[position].email = email;
         }
 
-        //sort list by name (fullname) in alphabetical order
+        //sort list by name (fullname) in alphabetical order. Code taken from google. to sort the array. 
         CONTACTS.contactList.contacts.sort(function (a, b) {
             if (a.fullname.toUpperCase().trim() < b.fullname.toUpperCase().trim()) {
                 return -1;
@@ -52,15 +54,15 @@ var CONTACTS = {
             }
         });
     },
-
+//when user clicks on the X mark it calls the splice func and delete the selected item.
     deleteItem: function (position) {
         CONTACTS.contactList.contacts.splice(position, 1);
     },
-
+//My storeItems func with key name of my userID with JSON Stringify I am stringifying my array. 
     storeItems: function () {
         localStorage.setItem("hunt0278", JSON.stringify(CONTACTS.contactList));
     },
-
+//The modal where all the info is added is been appended into the webpage. 
     createContactHTML: function (fullname, phone, email, position) {
 
         let listItem = document.createElement("li");
@@ -90,7 +92,7 @@ var CONTACTS = {
 
         return listItem;
     },
-
+//
     drawContactList: function () {
         //clears all listeners from memory
         let deleteList = document.querySelectorAll(".delete");
@@ -136,11 +138,7 @@ var CONTACTS = {
             modal.setAttribute("data-state", "open");
         }
     },
-
-    /**
-     * Event from Save button at modal window
-     * Adds / Updates a contact
-     */
+//When button "Save" is clicked it is storing all the item inside my localstorage at a same time displaying inside my webpage. 
     btnSaveClick: function () {
         //event.preventDefault();
 
@@ -159,10 +157,8 @@ console.log( "Full name " + fullname + "\n" +"Phone " + phone + "\n" + "email " 
         }
     },
 
-    /**
-     * Event from delete button at contact list.
-     * Deletes the selected contact
-     */
+//    Event from delete button at contact list.
+     
     btnDeleteClick: function (event) {
         event.stopPropagation();
         let position = this.parentElement.getAttribute("data-position");
@@ -171,9 +167,7 @@ console.log( "Full name " + fullname + "\n" +"Phone " + phone + "\n" + "email " 
         CONTACTS.drawContactList();
     },
 
-    /**
-     * Application initialization
-     */
+  //Initilizing my functions  
     init: function () {
         if (localStorage) {
             let lsData = localStorage.getItem('hunt0278');
