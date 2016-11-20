@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dave Hunter</title>
+<!--    Linking my css file which is inside my CSS folder-->
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+  <header>
+    <h1>Contact Manager</h1>
+  </header>
+  <main>
+
+  </main>
+  <footer>
+   <p id="demo"></p>
+<!--Fab icon-->
+    <div class="fab" data-mode="add"></div>
+  </footer>
+
+<!--modal-->
+    <div class="cover">
+        <div class="modal">
+            <div class="close">Close</div>
+<!--            Three <P> tag to take Name, email and phone Number-->
+            <p>
+                <input name="name" type="text" placeholder="Name" id="name" /> </p>
+            <p>
+                <input name="email" type="text" placeholder="Email" id="email" /> </p>
+            <p>
+                <input name="phone" type="text" placeholder="Phone" id="phone" /> </p>
+<!--                button to save all the information-->
+            <button id="save">save</button>
+        </div>
+    </div>
+
+<!--Linking my js file which is inside my JS folder-->
+<script src="js/main.js"></script>
+<!--Just adding some cool stuff which I learned online-->
+<script>
+document.getElementById("demo").innerHTML = "Dave Hunter(hunt0278) " + "<br>" +  Date() + "<br>" +"Page hostname is: " + window.location.hostname;
+</script>
+</body>
+</html>
