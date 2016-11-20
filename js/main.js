@@ -1,20 +1,22 @@
 var CONTACTS = {
-    //  list with all contacts
+    //  list with all contacts from the localstorage
     contactList: {},
 
     initContactList: function () {
         CONTACTS.contactList.contacts = [];
+        //AddItem will add the default information.
         CONTACTS.addItem("Dave Hunter", "123-456-7890", "hunt0278@algonquinlive.com", -1);
+        //This storeItems will store in the localstorage.
         CONTACTS.storeItems();
     },
-
-    fillModal: function (liItem) {
+//With fillmodal I am storing 
+    fillModal: function (listItem) {
         document.getElementById("name").className = "";
-        if (liItem) {
-            document.getElementById("name").value = liItem.querySelector("h3").textContent;
-            document.getElementById("phone").value = liItem.querySelector(".phone").textContent;
-            document.getElementById("email").value = liItem.querySelector(".email").textContent;
-            document.querySelector(".modal").setAttribute("data-position", liItem.getAttribute("data-position"));
+        if (listItem) {
+            document.getElementById("name").value = listItem.querySelector("h3").textContent;
+            document.getElementById("phone").value = listItem.querySelector(".phone").textContent;
+            document.getElementById("email").value = listItem.querySelector(".email").textContent;
+            document.querySelector(".modal").setAttribute("data-position", listItem.getAttribute("data-position"));
         } else {
             document.getElementById("name").value = "";
             document.getElementById("phone").value = "";
@@ -61,32 +63,32 @@ var CONTACTS = {
 
     createContactHTML: function (fullname, phone, email, position) {
 
-        let liItem = document.createElement("li");
-        liItem.className = "contact";
-        console.log(liItem);
+        let listItem = document.createElement("li");
+        listItem.className = "contact";
+        console.log(listItem);
         let btnDelete = document.createElement("spam");
         btnDelete.className = "delete";
         btnDelete.addEventListener("click", CONTACTS.btnDeleteClick);
-        liItem.appendChild(btnDelete);
+        listItem.appendChild(btnDelete);
         console.log(btnDelete);
         let h3Name = document.createElement("h3");
         h3Name.textContent = fullname;
-        liItem.appendChild(h3Name);
+        listItem.appendChild(h3Name);
         console.log(h3Name);
         let pEmail = document.createElement("p");
         pEmail.textContent = email;
         pEmail.className = "email";
-        liItem.appendChild(pEmail);
+        listItem.appendChild(pEmail);
         console.log(pEmail);
         let pPhone = document.createElement("p");
         pPhone.textContent = phone;
         pPhone.className = "phone";
-        liItem.appendChild(pPhone);
+        listItem.appendChild(pPhone);
         console.log(pPhone);
-        liItem.setAttribute("data-position", position);
-        liItem.addEventListener("click", CONTACTS.toogleModal);
+        listItem.setAttribute("data-position", position);
+        listItem.addEventListener("click", CONTACTS.toogleModal);
 
-        return liItem;
+        return listItem;
     },
 
     drawContactList: function () {
